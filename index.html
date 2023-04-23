@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="styles.css" rel="stylesheet">
+  <script defer src="script.js"></script>
+  <title>Quiz App</title>
+</head>
+
+<body>
+  <audio id="correct-choice" src="./audio/correct-choice.mp3" autostart="false"></audio>
+  <audio id="wrong-choice" src="./audio/wrong-choice.mp3" autostart="false"></audio>
+  <audio id="congrats-sound" src="./audio/tada.mp3" autostart="false"></audio>
+  <div class="container">
+    <div id="question-container" class="hide">
+      <div class="score-board"
+        style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+        <div style="font-weight: bold;">Player: <span id="playerNameHolder" style="color: red;"></span></div>
+        <div class="current-question" style="color: green;">Question: <span id="current-question"></span>
+        </div>
+        <div>Score: <span style="color: blue;" id="score"></span></div>
+      </div>
+      <div id="question" style="font-size: large; font-weight: bold;">Question</div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+      <div id="answer-state" style="align-items: center; text-align: center; color: gray; font-weight: bold;"></div>
+      <div id="congrats-message" class="hide" style="font-size: large; font-weight: bold; color: green; margin-bottom: 1rem;">
+      </div>
+      <button class="btn hide" id="restart-button" onclick="onRestart()">Play new game</button>
+    </div>
+    <div class="controls">
+      <div>
+        <div id="welcome-container">
+          <h2>Welcome to quiz game</h2>
+          <label for=" playerName">Name:</label>
+          <input name="playerName" id="playerName" />
+          <br>
+          <span id="invalid-player-name" class="hide" style="color: red;">Player name is required!!!</span>
+        </div>
+        <br>
+        <div class="control-button-container" style="display: flex; align-items: center; justify-content: center;">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+</html>
