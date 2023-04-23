@@ -8,7 +8,6 @@ const currentQuestion = document.getElementById("current-question");
 const playerNameHolder = document.getElementById("playerNameHolder");
 const playerNameInput = document.getElementById("playerName");
 const invalidPlayerName = document.getElementById("invalid-player-name");
-const scoreHolder = document.getElementById("score");
 const answerState = document.getElementById("answer-state");
 const congratsMessage = document.getElementById("congrats-message");
 const restartGameButton = document.getElementById("restart-button");
@@ -18,7 +17,6 @@ startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   currentQuestion.innerText = `${currentQuestionIndex + 1}/${questions.length}`;
-  scoreHolder.innerText = score;
   setNextQuestion();
 });
 
@@ -37,7 +35,6 @@ function startGame() {
     currentQuestion.innerText = `${currentQuestionIndex + 1}/${
       questions.length
     }`;
-    scoreHolder.innerText = score;
     questionContainerElement.classList.remove("hide");
     setNextQuestion();
   }
@@ -76,28 +73,31 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct;
   if (correct) {
     score += 1;
-    scoreHolder.innerText = score;
-    answerState.innerText = "Your answer is correct";
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       let sound = document.getElementById("correct-choice");
       sound.play();
     }
   } else {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-      let sound = document.getElementById("wrong-choice");
+      let sound = document.getElementById("correct-choice");
       sound.play();
     }
-    answerState.innerText = "Your answer is wrong!!!";
   }
   answerState.classList.remove("hide");
-
-  setStatusClass(document.body, correct);
-  Array.from(answerButtonsElement.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
-  });
+  //Disable set status
+  // setStatusClass(document.body, correct);
+  // Array.from(answerButtonsElement.children).forEach((button) => {
+  //   setStatusClass(button, button.dataset.correct);
+  // });
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove("hide");
+    currentQuestionIndex++;
+    currentQuestion.innerText = `${currentQuestionIndex + 1}/${
+      questions.length
+    }`;
+    setNextQuestion();
   } else {
+    questionElement.classList.add("hide");
+    answerButtonsElement.classList.add("hide");
     let sound = document.getElementById("congrats-sound");
     sound.play();
     congratsMessage.innerHTML = `Congrats ${playerNameInput.value}!!! You finished the game and your score is ${score} out of ${questions.length}`;

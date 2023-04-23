@@ -18,7 +18,7 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: hsl(var(--hue), 100%, 20%);
+  background-color: #ffd1dc;
 }
 
 body.correct {
@@ -57,6 +57,7 @@ body.wrong {
 
 .btn:hover {
   border-color: black;
+  background-color: blue;
 }
 
 .btn.correct {
